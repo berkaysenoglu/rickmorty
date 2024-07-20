@@ -1,4 +1,4 @@
-import ReactDOM from 'react-dom/client'
+import ReactDOM from 'react-dom/client';
 import {
     createBrowserRouter,
     RouterProvider,
@@ -7,9 +7,11 @@ import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
-import './index.css'
+import './index.css';
 
-import {createTheme, ThemeProvider} from "@mui/material";
+import { createTheme, ThemeProvider } from "@mui/material";
+import { Provider } from 'react-redux';
+import  store  from './redux/store.js'; // Store'u import edin
 
 import EpisodeList from "./pages/EpisodeList.jsx";
 import EpisodeDetail from "./pages/EpisodeDetail.jsx";
@@ -19,7 +21,6 @@ import CharacterDetail from "./pages/CharacterDetail.jsx";
 import LocationList from "./pages/LocationList.jsx";
 import Location from "./pages/Location.jsx";
 import Favorites from "./pages/Favorites.jsx";
-
 
 const router = createBrowserRouter([
     {
@@ -71,7 +72,9 @@ const theme = createTheme({
 });
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-     <ThemeProvider theme={theme}>
-         <RouterProvider router={router} />
-     </ThemeProvider>
-)
+    <Provider store={store}> {/* Redux Provider ile store'u sağlıyoruz */}
+        <ThemeProvider theme={theme}>
+            <RouterProvider router={router} />
+        </ThemeProvider>
+    </Provider>
+);

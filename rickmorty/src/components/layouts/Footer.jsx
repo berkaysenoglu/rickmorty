@@ -4,8 +4,8 @@ import {Typography} from "@mui/material";
 const Footer = () => {
     return (
         <div className='mt-auto bg-stone-800 text-white p-10'>
-            <Container maxWidth="xl">
-               <Typography variant='body2'>
+            <Container  maxWidth="xl"  className='flex justify-center items-center'>
+               <Typography  className='flex justify-center items-center' variant='body2'>
                    Copyright © Berkay Şenoğlu 2024
                </Typography>
             </Container>
