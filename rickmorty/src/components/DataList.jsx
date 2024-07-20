@@ -32,19 +32,17 @@ const DataList = ({ title, url, CardComponent }) => {
             }
         };
 
-        if (debouncedSearch || page) {
+        if (url && debouncedSearch || page) {
             fetchData();
         }
     }, [debouncedSearch, page, url]);
 
     const handleSearch = (e) => {
         setSearchData(e.target.value);
-        setPage(1);
     };
 
     const handleChangePage = (_, value) => {
         setPage(value);
-        setSearchData("");
     };
 
     return (

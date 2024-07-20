@@ -3,21 +3,35 @@ import {useParams} from "react-router-dom";
 import axios from "axios";
 import {characterURL} from "../constants.js";
 import {Typography, Grid} from "@mui/material";
-import CharacterCard from "../components/CharacterCard.jsx";
 import EpisodeCard from "../components/EpisodeCard.jsx";
+import EpisodeList from "./EpisodeList.jsx";
+import CharacterCard from "../components/CharacterCard.jsx";
 const CharacterDetail = () => {
     const { id } = useParams();
     const [data, setData] = useState();
+    const [episodeList, setEpisodeList] = useState([]);
 
 
     useEffect(() => {
-        axios.get(`${characterURL}/${id}`).then((res) => {
-            setData(res.data)
-
-
-        })
+       if (!isNaN(id)) {
+           axios.get(`${characterURL}/${id}`).then((res) => {
+               setData(res.data)
+           })
+       }
     }, []);
-console.log(data)
+
+    console.log(data)
+
+    useEffect(() => {
+        if (data) {
+            const ids = data.episode.map(url => url.split('/').pop()).join(',');
+            const apiUrl = `https://rickandmortyapi.com/api/episode/${ids}`;
+            axios.get(apiUrl).then((res) => {
+                setEpisodeList(res.data)
+            })
+        }
+    }, [data])
+
     if(isNaN(id)) return <div>id must be number</div> // todo: hata bastır
 
     return (
@@ -47,9 +61,9 @@ console.log(data)
             </div>
             <div>
                 <Grid container spacing={2}>
-                    {data?.episode.map((episode) => (
+                    {episodeList.map((episode) => (
                         <Grid item key={episode.id} xs={12} sm={6} md={4} lg={3}>
-                            <EpisodeCard {...data} />
+                            <EpisodeCard {...episode} />
                         </Grid>
                     ))}
 

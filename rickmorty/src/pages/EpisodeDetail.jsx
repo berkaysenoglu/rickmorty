@@ -3,22 +3,39 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import {episodeURL} from "../constants.js";
 
-import {Typography} from "@mui/material";
+import {Grid, Typography} from "@mui/material";
 
 import episodeImg from '@/assets/episodes.jpg'
+import CharacterList from "./CharacterList.jsx";
+import CharacterCard from "../components/CharacterCard.jsx";
 
 const EpisodeDetail = () => {
     const { id } = useParams();
     const [data, setData] = useState();
+    const [characterList, setCharaceterList] = useState([]);
 
 
     useEffect(() => {
-        axios.get(`${episodeURL}/${id}`).then((res) => {
-            setData(res.data)
-        })
+        if (!isNaN(id)) {
+            axios.get(`${episodeURL}/${id}`).then((res) => {
+                setData(res.data)
+            })
+        }
     }, []);
 
+    useEffect(() => {
+        if (data) {
+            const ids = data.characters.map(url => url.split('/').pop()).join(',');
+            const apiUrl = `https://rickandmortyapi.com/api/character/${ids}`;
+            axios.get(apiUrl).then((res) => {
+                setCharaceterList(res.data)
+            })
+        }
+    }, [data])
+
     if(isNaN(id)) return <div>id must be number</div> // todo: hata bastır
+
+    console.log(characterList);
 
     return (
         <>
@@ -41,8 +58,14 @@ const EpisodeDetail = () => {
                 />
             </div>
             <div className='bg-slate-600 text-white rounded p-5 mt-10'>
-                Characters
-                {/* todo: Buraya pagination ile yazdırmak gerekiyor sanırımı*/}
+                <Grid container spacing={2}>
+                    {characterList.map((character) => (
+                        <Grid item key={character.id} xs={12} sm={6} md={4} lg={3}>
+                            <CharacterCard {...character} />
+                        </Grid>
+                    ))}
+
+                </Grid>
             </div>
         </>
     );
