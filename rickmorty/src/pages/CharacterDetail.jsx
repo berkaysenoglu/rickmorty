@@ -36,7 +36,7 @@ const CharacterDetail = () => {
                 if (Array.isArray(res.data)) {
                     setEpisodeList(res.data);
                 } else {
-                    setEpisodeList([res.data]); // Tek bir bölüm dönerse diziye sarıyoruz
+                    setEpisodeList([res.data]);
                 }
                 setLoading(false);
             }).catch(error => {
