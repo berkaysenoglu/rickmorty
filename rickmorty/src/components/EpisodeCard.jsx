@@ -34,7 +34,8 @@ const EpisodeCard = ({ id, name, episode, air_date }) => {
                   transition: 'box-shadow 0.3s',
                   boxShadow: hover ? 6 : 1,
               }}>
-            <CardHeader  title={name} subheader={formatEpisode(episode)}/>
+
+            <CardHeader title={<p className='line-clamp-1'>{name}</p>} subheader={formatEpisode(episode)}/>
             <CardMedia
                 className='cursor-pointer h-96'
                 component="img"

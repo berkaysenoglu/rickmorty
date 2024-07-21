@@ -33,7 +33,8 @@ const LocationCard = ({ id, name, type, dimension }) => {
                   transition: 'box-shadow 0.3s',
                   boxShadow: hover ? 6 : 1,
               }}>
-            <CardHeader title={name} subheader={type}/>
+            <CardHeader title={<p className='line-clamp-1'>{name}</p>} subheader={type}/>
+
             <CardMedia
                 className='cursor-pointer h-96'
                 component="img"
