@@ -82,7 +82,7 @@ const CharacterCard = ({ id, name, status, gender, image }) => {
                       transition: 'box-shadow 0.3s',
                       boxShadow: hover ? 6 : 1,
                   }}>
-                <CardHeader title={name} subheader={status}/>
+                <CardHeader className='line-clamp-1' title={name} subheader={status}/>
                 <CardMedia
                     className='cursor-pointer h-96'
                     component="img"

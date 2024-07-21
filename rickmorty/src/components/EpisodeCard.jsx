@@ -26,7 +26,7 @@ const EpisodeCard = ({ id, name, episode, air_date }) => {
     const handleGoToEpisode = () => {
         navigate(`/episodes/${id}`)
     }
-    // todo: Çok tekrar ediyor kartlar tasarımları aynı olacaksa teke düşür
+
     return (
         <Card onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
@@ -34,7 +34,7 @@ const EpisodeCard = ({ id, name, episode, air_date }) => {
                   transition: 'box-shadow 0.3s',
                   boxShadow: hover ? 6 : 1,
               }}>
-            <CardHeader title={name} subheader={formatEpisode(episode)}/>
+            <CardHeader  title={name} subheader={formatEpisode(episode)}/>
             <CardMedia
                 className='cursor-pointer h-96'
                 component="img"

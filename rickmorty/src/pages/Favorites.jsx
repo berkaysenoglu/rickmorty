@@ -9,7 +9,7 @@ import CharacterCard from "../components/CharacterCard.jsx";
 
 
 const Favorites = () => {
-const dispatch = useDispatch();
+
 const favorites =  useSelector((state) => state.favorites.characters);
 console.log(favorites);
 

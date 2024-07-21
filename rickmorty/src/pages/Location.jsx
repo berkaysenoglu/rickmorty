@@ -17,7 +17,7 @@ const Location = () => {
         })
     }, []);
 
-    if(isNaN(id)) return <div>id must be number</div> // todo: hata bastır
+    if(isNaN(id)) return <div>id must be number</div>
 
     return (
         <>

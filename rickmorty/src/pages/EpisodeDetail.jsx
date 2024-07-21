@@ -4,7 +4,6 @@ import axios from "axios";
 import { episodeURL } from "../constants.js";
 import {Alert, Grid, Typography} from "@mui/material";
 import episodeImg from '@/assets/episodes.jpg';
-import CharacterList from "./CharacterList.jsx";
 import CharacterCard from "../components/CharacterCard.jsx";
 import Pagination from "../components/Pagination.jsx";
 import Box from "@mui/material/Box";

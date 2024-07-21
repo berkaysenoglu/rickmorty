@@ -11,7 +11,7 @@ import './index.css';
 
 import { createTheme, ThemeProvider } from "@mui/material";
 import { Provider } from 'react-redux';
-import  store  from './redux/store.js'; // Store'u import edin
+import  store  from './redux/store.js';
 
 import EpisodeList from "./pages/EpisodeList.jsx";
 import EpisodeDetail from "./pages/EpisodeDetail.jsx";
